@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tengo algo para ti</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffcccb;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #d50000;
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #d50000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            z-index: 1;
+        }
+
+        button:hover {
+            background-color: #a00000;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: fall linear infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(-45deg); }
+            100% { transform: translateY(100vh) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tengo algo para ti</h1>
+    <button onclick="window.location.href='pagina2.html'">Haz clic aquí</button>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
